@@ -6,6 +6,10 @@
 
 ## Source code
 
+::: tip
+For a more complete example please go to [autocomplete](/examples/autocomplete.html)
+:::
+
 ```html
 <body>
   <div id="root">
@@ -25,7 +29,10 @@
     <br>
     <label>
       <strong>Place:</strong>
-      <gmap-autocomplete :value="description" placeholder="This is a placeholder text" @place_changed="setPlace"
+      <gmap-autocomplete
+        :value="description"
+        placeholder="This is a placeholder text"
+        @place_changed="setPlace"
         :select-first-on-enter="true">
       </gmap-autocomplete>
     </label>
@@ -39,7 +46,10 @@
       You cannot find the state of Texas in this
       <label>
         Only locations in Singapore:
-        <gmap-autocomplete :value="description" @place_changed="setPlace" :options="{
+        <gmap-autocomplete
+          :value="description"
+          @place_changed="setPlace"
+          :options="{
             bounds: {north: 1.4, south: 1.2, east: 104, west: 102},
             strictBounds: true
           }">
