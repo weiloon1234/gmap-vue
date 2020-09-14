@@ -15,7 +15,7 @@
     "gmap-vue": "^1.4.0",
     "lodash": "^4.17.20",
     "snyk": "^1.372.0",
-    "vuepress": "^1.5.3"
+    "vuepress": "^1.5.4"
   },
   "snyk": true
 }
