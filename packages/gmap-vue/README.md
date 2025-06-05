@@ -78,10 +78,11 @@ If you are using Webpack and Vue file components, just add the following to your
 In your `main.js` or inside a Nuxt plugin:
 
 ```js
-import Vue from 'vue'
-import * as VueGoogleMaps from 'gmap-vue'
+import { createApp } from 'vue'
+import GmapVue from 'gmap-vue'
 
-Vue.use(VueGoogleMaps, {
+const app = createApp(App)
+app.use(GmapVue, {
   load: {
     key: 'YOUR_API_TOKEN',
     libraries: 'places', // This is required if you use the Autocomplete plugin
@@ -106,6 +107,7 @@ Vue.use(VueGoogleMaps, {
   //// If you want to automatically install all the components this property must be set to 'true':
   installComponents: true
 })
+app.mount('#app')
 ```
 
 If you need to gain access to the `Map` instance (e.g. to call `panToBounds`, `panTo`):
