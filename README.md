@@ -6,77 +6,68 @@
 [![Documentation](https://github.com/diegoazh/gmap-vue/workflows/documentation/badge.svg)](https://github.com/diegoazh/gmap-vue/actions?query=workflow%3Adocumentation)
 [![](https://data.jsdelivr.com/v1/package/npm/gmap-vue/badge)](https://www.jsdelivr.com/package/npm/gmap-vue)
 
-## Plugin dependencies
+GmapVue is a Vue 3 wrapper for Google Maps. The project continues where
+`vue2-google-maps` left off and is maintained by the community.
 
-|Name|Version|
-|----|-------|
-|*vue*|[![npm version](https://badge.fury.io/js/vue.svg)](https://badge.fury.io/js/vue)|
-|*marker-clusterer-plus*|[![npm version](https://badge.fury.io/js/marker-clusterer-plus.svg)](https://badge.fury.io/js/marker-clusterer-plus)|
-
-## Project dependencies
-
-|Name|Version|
-|----|-------|
-|*lerna*|[![npm version](https://badge.fury.io/js/lerna.svg)](https://badge.fury.io/js/lerna)|
-|*commitlint*|[![npm version](https://badge.fury.io/js/commitlint.svg)](https://badge.fury.io/js/commitlint)|
-|*husky*|[![npm version](https://badge.fury.io/js/husky.svg)](https://badge.fury.io/js/husky)|
-|*lint-staged*|[![npm version](https://badge.fury.io/js/lint-staged.svg)](https://badge.fury.io/js/lint-staged)|
-
-## [Documentation](https://diegoazh.github.io/gmap-vue/)
-
-The new documentation site is ready and it contains all examples for all components in the plugin.
-
-If you find some parts of the plugin that was not documented, or if you think that some parts of the documentation are dark or can be improved please open an issue following our issue template rules.
-
-You can use your google maps API key to use the live examples section.
-
-We have planned to improve and grow all required documentation about the plugin.
-
-Please follow the next link to our [documentation](https://diegoazh.github.io/gmap-vue/).
-
-## Fork of vue2-google-maps
-
-This is a fork of the popular vue2-google-maps. As the author of the library no longer commits to maintain the project, we forked it to develop and maintain the project.
-
-## CONTRIBUTORS ARE WELCOME
-
-If you have time to contribute to a rather frequently used library, feel free to make a PR!, but first please read our [contributing guide](https://github.com/diegoazh/gmap-vue/blob/master/CONTRIBUTING.md).
-
-What's urgently needed are:
-
-1. Better automated tests (unit with Jest, e2e with Cypress).
-2. Better integration tests with the popular frameworks, especially Nuxt and Vue template
-3. ~~Migrate to VueJs v3.0~~ (completed)
-4. ~~Better documentation (examples, recommendations)~~
-
-Please feel free to fork the project and make a PR to improve the plugin.
-
-## Monorepo
-
-This project uses [Lerna](https://github.com/lerna/lerna) to manage the plugin and documentation site.
-
-- Clone the repository
-
-- Run
+## Installation
 
 ```sh
-npm install
+npm install gmap-vue
 ```
 
-- After that you can use the HTML examples inside the examples folder on the `gmap-vue` package, take in mind that this folder will disappear in a near feature. When this happens you only could test with the live example on the documentation site with your own google maps API key
+## Usage
 
-- To start the documentation site locally you can run following command, it starts the documentation page on [http://localhost:8080/](http://localhost:8080/)
+Register the plugin and create a simple map:
 
-```sh
-npm run start:docs
+```js
+import { createApp } from 'vue'
+import App from './App.vue'
+import GmapVue from 'gmap-vue'
+
+const app = createApp(App)
+app.use(GmapVue, {
+  load: {
+    key: 'YOUR_API_TOKEN',
+    libraries: 'places',
+  },
+})
+
+app.mount('#app')
 ```
 
-- To test the plugin you also can use a CDN like [jsdelivr](https://diegoazh.github.io/gmap-vue/#jsdelivr) or [unpkg](https://diegoazh.github.io/gmap-vue/#unpkg), in the way that the documentation shows you
+```vue
+<template>
+  <GmapMap
+    :center="{ lat: 10, lng: 10 }"
+    :zoom="7"
+    style="width: 500px; height: 300px"
+  >
+    <GmapMarker :position="{ lat: 10, lng: 10 }" />
+  </GmapMap>
+</template>
+```
 
-## README of GmapVue
+See [demo/usage.js](demo/usage.js) for a more complete example.
 
-You can read the plugin's README file following [this link](https://github.com/diegoazh/gmap-vue/blob/master/packages/gmap-vue/README.md).
+## Documentation
 
-## Quick demo
+Full documentation and live examples are available at
+[diegoazh.github.io/gmap-vue](https://diegoazh.github.io/gmap-vue/).
 
-You can see a minimal Vue 3 setup using the plugin in [demo/usage.js](demo/usage.js). This file shows how to mount a simple map with a couple of markers using the new default export.
+## Contributing
+
+Contributions are welcome! Please read the
+[contributing guide](https://github.com/diegoazh/gmap-vue/blob/master/CONTRIBUTING.md)
+before opening a pull request.
+
+This project uses [Lerna](https://github.com/lerna/lerna) to manage multiple
+packages.
+
+## License
+
+GmapVue is released under the MIT License.
+
+---
+
+You can find a more detailed README for the plugin at
+[packages/gmap-vue/README.md](https://github.com/diegoazh/gmap-vue/blob/master/packages/gmap-vue/README.md).
