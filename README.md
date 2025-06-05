@@ -76,3 +76,7 @@ npm run start:docs
 ## README of GmapVue
 
 You can read the plugin's README file following [this link](https://github.com/diegoazh/gmap-vue/blob/master/packages/gmap-vue/README.md).
+
+## Quick demo
+
+You can see a minimal Vue 3 setup using the plugin in [demo/usage.js](demo/usage.js). This file shows how to mount a simple map with a couple of markers using the new default export.
