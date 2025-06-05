@@ -46,7 +46,7 @@ What's urgently needed are:
 
 1. Better automated tests (unit with Jest, e2e with Cypress).
 2. Better integration tests with the popular frameworks, especially Nuxt and Vue template
-3. Migrate to VueJs v3.0
+3. ~~Migrate to VueJs v3.0~~ (completed)
 4. ~~Better documentation (examples, recommendations)~~
 
 Please feel free to fork the project and make a PR to improve the plugin.

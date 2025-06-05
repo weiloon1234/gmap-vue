@@ -13,9 +13,9 @@ We have planed improve and grow all required documentation about the plugin.
 
 Please follow next link to our [documentation](https://diegoazh.github.io/gmap-vue/).
 
-## Vue-2 port of vue-google-maps
+## Vue 3 Support
 
-This is a fork of the popuplar vue2-google-maps. As the author of the library no longer commit to maintain the project, we forked it to develop and maintain the project. 
+This library was originally a Vue 2 fork of `vue2-google-maps`. It has now been updated to work with Vue 3.
 
 ## CONTRIBUTORS NEEDED!
 

@@ -9,6 +9,7 @@ import Polygon from './components/polygon';
 import Circle from './components/circle';
 import Rectangle from './components/rectangle';
 import DrawingManager from './components/drawing-manager.vue';
+import createEventBus from './utils/event-bus';
 
 // Vue component imports
 import InfoWindow from './components/info-window.vue';
@@ -57,7 +58,7 @@ export {
   StreetViewPanorama,
 };
 
-export function install(Vue, options) {
+export function install(app, options) {
   // Set defaults
   // TODO: All disabled eslint rules should be analyzed
   // eslint-disable-next-line no-param-reassign -- this should be analyzed;
@@ -72,42 +73,33 @@ export function install(Vue, options) {
   // via:
   //   import { gmapApi } from 'gmap-vue'
   //   export default {  computed: { google: gmapApi }  }
-  GmapApi = new Vue({ data: { gmapApi: null } });
+  GmapApi = { gmapApi: null };
 
-  const defaultResizeBus = new Vue();
+  const defaultResizeBus = createEventBus();
 
   // Use a lazy to only load the API when
   // a VGM component is loaded
   const promiseLazyCreator = promiseLazyFactory(loadGmapApi, GmapApi);
   const gmapApiPromiseLazy = promiseLazyCreator(options);
 
-  Vue.mixin({
-    created() {
-      this.$gmapDefaultResizeBus = defaultResizeBus;
-      this.$gmapOptions = options;
-      this.$gmapApiPromiseLazy = gmapApiPromiseLazy;
-    },
-  });
-
-  // eslint-disable-next-line no-param-reassign -- old style this should be analyzed;
-  Vue.$gmapDefaultResizeBus = defaultResizeBus;
-  // eslint-disable-next-line no-param-reassign -- old style this should be analyzed;
-  Vue.$gmapApiPromiseLazy = gmapApiPromiseLazy;
+  app.config.globalProperties.$gmapDefaultResizeBus = defaultResizeBus;
+  app.config.globalProperties.$gmapOptions = options;
+  app.config.globalProperties.$gmapApiPromiseLazy = gmapApiPromiseLazy;
 
   if (options.installComponents) {
-    Vue.component('GmapMap', Map);
-    Vue.component('GmapMarker', Marker);
-    Vue.component('GmapInfoWindow', InfoWindow);
-    Vue.component('GmapHeatmapLayer', HeatmapLayer);
-    Vue.component('GmapKmlLayer', KmlLayer);
-    Vue.component('GmapPolyline', Polyline);
-    Vue.component('GmapPolygon', Polygon);
-    Vue.component('GmapCircle', Circle);
-    Vue.component('GmapRectangle', Rectangle);
-    Vue.component('GmapDrawingManager', DrawingManager);
-    Vue.component('GmapAutocomplete', Autocomplete);
-    Vue.component('GmapPlaceInput', PlaceInput);
-    Vue.component('GmapStreetViewPanorama', StreetViewPanorama);
+    app.component('GmapMap', Map);
+    app.component('GmapMarker', Marker);
+    app.component('GmapInfoWindow', InfoWindow);
+    app.component('GmapHeatmapLayer', HeatmapLayer);
+    app.component('GmapKmlLayer', KmlLayer);
+    app.component('GmapPolyline', Polyline);
+    app.component('GmapPolygon', Polygon);
+    app.component('GmapCircle', Circle);
+    app.component('GmapRectangle', Rectangle);
+    app.component('GmapDrawingManager', DrawingManager);
+    app.component('GmapAutocomplete', Autocomplete);
+    app.component('GmapPlaceInput', PlaceInput);
+    app.component('GmapStreetViewPanorama', StreetViewPanorama);
   }
 }
 
